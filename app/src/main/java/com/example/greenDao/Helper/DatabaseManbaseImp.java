@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.database.greendao.example.DaoMaster;
 import com.database.greendao.example.DaoSession;
+import com.database.greendao.example.Info;
+import com.database.greendao.example.InfoDao;
 import com.database.greendao.example.UserInfo;
 import com.database.greendao.example.UserInfoDao;
 
@@ -58,6 +60,19 @@ public class DatabaseManbaseImp extends DatabaseManbase {
             DaoMaster master = new DaoMaster(db);
             DaoSession session = master.newSession();
             UserInfoDao dao = session.getUserInfoDao();
+            return dao.insertOrReplace(info);
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return -1;
+    }
+
+    public long saveInfo(Info info){
+        try{
+            SQLiteDatabase db = getWriteDatabase();
+            DaoMaster master = new DaoMaster(db);
+            DaoSession session = master.newSession();
+            InfoDao dao = session.getInfoDao();
             return dao.insertOrReplace(info);
         }catch (Exception ex){
             ex.printStackTrace();

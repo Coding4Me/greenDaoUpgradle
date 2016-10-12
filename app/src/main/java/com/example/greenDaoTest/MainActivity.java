@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-
+import com.database.greendao.example.Info;
 import com.database.greendao.example.UserInfo;
 import com.example.greenDao.Helper.DatabaseManbaseImp;
 
@@ -30,7 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         List<UserInfo> infos = getDbMan().getUserInfo();
         if(infos != null && infos.size()>0){
-            Log.d("MainActivity","database get data row:" + infos.size());
+            Log.d("MainActivity","database get UserInfo data row:" + infos.size());
+        }
+
+        Info info = new Info(100L,"aland",30,1,8888888,"beijing");
+        long id = getDbMan().saveInfo(info);
+        if(id > 0){
+            Log.d("MainActivity","database save info success");
         }
     }
 

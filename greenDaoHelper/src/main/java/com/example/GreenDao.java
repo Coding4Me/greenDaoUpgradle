@@ -11,6 +11,7 @@ public class GreenDao {
         schema.enableKeepSectionsByDefault();
         schema.enableActiveEntitiesByDefault();
         adUserItem(schema);
+        adInfoItem(schema);
         try {
             new DaoGenerator().generateAll(schema, "app/greendao_gen");
         } catch (Exception e) {
@@ -21,6 +22,16 @@ public class GreenDao {
 
     private static void adUserItem(Schema schema){
         Entity entity = schema.addEntity("UserInfo");
+        entity.addLongProperty("id");
+        entity.addStringProperty("name");
+        entity.addIntProperty("age");
+        entity.addIntProperty("sex");
+        entity.addIntProperty("phone");
+        entity.addStringProperty("address");
+    }
+
+    private static void adInfoItem(Schema schema){
+        Entity entity = schema.addEntity("Info");
         entity.addLongProperty("id");
         entity.addStringProperty("name");
         entity.addIntProperty("age");
